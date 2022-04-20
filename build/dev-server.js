@@ -1,5 +1,6 @@
-require('./check-versions')()
 
+require('./check-versions')()
+// console.log('test');
 process.env.PLATFORM = process.argv[process.argv.length - 1] || 'wx'
 var config = require('../config')
 if (!process.env.NODE_ENV) {

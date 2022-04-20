@@ -42,6 +42,7 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: auto;
     height: 125px;
     border-radius: 10px;
     background-size: 100% 100%;

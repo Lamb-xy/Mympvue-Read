@@ -53,7 +53,7 @@ export default {
       if (newValue && newValue.length > 0 && newValue !== preValue) {
         this.$nextTick(() => {
           this.isLoading = true
-      this.error = false
+          this.error = false
         })
       }
     },

@@ -1,37 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div @click="clickHandle">
-
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <img class="userinfo-avatar" src="/static/images/user.png" background-size="cover" />
-
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" :value="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
-
-    <div class="all">
-        <div class="left">
-        </div>
-        <div class="right">
-        </div>
-    </div>
-=======
   <div>
     <div class="home" v-if="isAuth">
       <SearchBar
@@ -48,7 +15,7 @@
         @onBookClick="onBookClick"
       />
       <HomeBanner
-        img="http://127.0.0.1/book/res/bg.jpg"
+        img="https://c-ssl.duitang.com/uploads/blog/202108/19/20210819104153_1af8f.thumb.1000_0.jpeg_webp"
         title="欢迎来到小羊Read"
         sub-title="go!"
         @onClick="onBannerClick"
@@ -94,102 +61,10 @@
       />
     </div>
     <Auth v-if="!isAuth" @getUserProfile="getUserProfile" />
->>>>>>> 3565444 (项目大致完成版)
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-import card from '@/components/card'
-
-export default {
-  data () {
-    return {
-      motto: 'Hello miniprograme',
-      userInfo: {
-        nickName: 'mpvue',
-        avatarUrl: 'http://mpvue.com/assets/logo.png'
-      }
-    }
-  },
-
-  components: {
-    card
-  },
-
-  methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      if (mpvuePlatform === 'wx') {
-        mpvue.switchTab({ url })
-      } else {
-        mpvue.navigateTo({ url })
-      }
-    },
-    clickHandle (ev) {
-      console.log('clickHandle:', ev)
-      // throw {message: 'custom test'}
-    }
-  },
-
-  created () {
-    // let app = getApp()
-  }
-}
-</script>
-
-<style scoped>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-.all{
-  width:7.5rem;
-  height:1rem;
-  background-color:blue;
-}
-.all:after{
-  display:block;
-  content:'';
-  clear:both;
-}
-.left{
-  float:left;
-  width:3rem;
-  height:1rem;
-  background-color:red;
-}
-
-.right{
-  float:left;
-  width:4.5rem;
-  height:1rem;
-  background-color:green;
-}
-=======
 import SearchBar from '../../components/home/SearchBar.vue'
 import HomeCard from '../../components/home/HomeCard.vue'
 import HomeBanner from '../../components/home/HomeBanner.vue'
@@ -200,7 +75,7 @@ import {
   getUserProfile,
   setStorageSync,
   getStorageSync,
-  getUserOpenId,
+  getUserOpenId as getOpenId,
   showLoading,
   hideLoading,
   showToast,
@@ -239,11 +114,6 @@ export default {
     }
   },
   mounted() {
-    // showLoading('正在加载')
-    this.userInfo = getStorageSync('userInfo')
-    this.openId = getStorageSync('openId')
-    this.getHomeData()
-    // hideLoading()
   },
   methods: {
     onSignClick() {
@@ -274,16 +144,32 @@ export default {
       })
     },
     getUserProfile() {
+        const vue = this
+        const onOpenIdComplete = (vue, openId, userInfo) => {
+        // showLoading('正在努力加载中~')
+          vue.openId = openId
+          // 获取首页数据
+          vue.getHomeData(openId, hideLoading)
+          // 上报用户信息，注册账号
+          register(openId, userInfo)
+          // 判断用户今天是否签到过
+          vue.getSignState(openId)
+        }
       getUserProfile(
         (userInfo) => {
-          setStorageSync('userInfo', userInfo)
-          const openId = getStorageSync('openId')
-          if (!openId || openId.length === 0) {
-            //  未获得需 请求openId
-            getUserOpenId()
-          }
-          register(openId, userInfo)
+            vue.userInfo = userInfo
+            setStorageSync('userInfo', userInfo)
+            const openId = getStorageSync('openId')
+            console.log('openId', openId)
+            if (!openId || openId.length === 0) {
+              getOpenId((openId) => {
+                onOpenIdComplete(vue, openId, userInfo)
+              })
+            } else {
+              onOpenIdComplete(vue, openId, userInfo)
+            }
           this.isAuth = true
+          hideLoading()
         },
         () => {
           console.log('failed...')
@@ -368,5 +254,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
->>>>>>> 3565444 (项目大致完成版)
 </style>

@@ -9,9 +9,8 @@
         class="tag-group-item"
         v-for="(text, index) in tags"
         :key="index"
-        @click="onTagClick"
       >
-        <Tag :text="text" @onTagClick="onTagClick(text, index)" />
+        <Tag :text="text" @onTagClick="onTagClick(text)" />
       </div>
     </div>
   </div>
@@ -36,8 +35,8 @@ export default {
   mounted() {},
 
   methods: {
-    onTagClick(text, index) {
-      this.$emit('onTagClick', text, index)
+    onTagClick(text) {
+      this.$emit('onTagClick', text)
     },
     onBtnClick() {
       this.$emit('onBtnClick')

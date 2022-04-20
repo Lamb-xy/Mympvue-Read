@@ -138,8 +138,6 @@ if (/^(swan)|(tt)$/.test(PLATFORM)) {
     ]
   })
 }
-<<<<<<< HEAD
-=======
 if (/^wx$/.test(PLATFORM)) {
   baseWebpackConfig = merge(baseWebpackConfig, {
     plugins: [
@@ -151,6 +149,5 @@ if (/^wx$/.test(PLATFORM)) {
     ]
   })
 }
->>>>>>> 3565444 (项目大致完成版)
 
 module.exports = baseWebpackConfig

@@ -3,7 +3,7 @@
     <div class="auth">
       <div class="auth-info">
         <div class="auth-img">
-          <ImageView src="http://127.0.0.1/images/logo.png" height="74px" mode="aspectFit" round />
+          <ImageView src="https://xiaoyangmm.top/images/logo.png" height="74px" mode="aspectFit" round />
         </div>
         <div class="sub-title">登录小羊Read</div>
         <div class="title">一起来阅读吧~</div>

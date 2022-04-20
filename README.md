@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 # my-mpvue-read
 小羊Read小程序
-<<<<<<< HEAD
-=======
-# my-project
-=======
->>>>>>> 3565444 (项目大致完成版)
 
 > A Mpvue project
 

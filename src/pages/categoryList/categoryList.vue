@@ -5,8 +5,8 @@
         :col="2"
         :data="category"
         mode="category"
-        showBtn="false"
-        showTitle="false"
+        :showBtn="false"
+        :showTitle="false"
       />
   </div>
 </template>

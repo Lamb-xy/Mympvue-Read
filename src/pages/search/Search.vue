@@ -12,7 +12,7 @@
       headerText="热门推荐"
       btnText="换一批"
       :tags="hotSearchArray"
-      @onTagClick="showBookDetail"
+      @onTagClick="searchKeyWord"
       @onBtnClick="changeHotSearch"
       v-if="hotSearchArray.length > 0 && !showList"
     />
@@ -69,7 +69,7 @@ export default {
     TagGroup,
     SearchList,
   },
-  mounted() {
+  onShow() {
     this.openId = getStorageSync('openId')
     hotSearch().then((response) => {
       // console.log(response);
@@ -131,10 +131,6 @@ export default {
       this.searchFocus = false
       console.log('onConfirm..', keyword)
     },
-    //点击tag展示图书信息
-    showBookDetail(text, index) {
-      console.log('showBookDetail...', text, index)
-    },
     //换一批
     changeHotSearch() {
       //   console.log('changeHotSearch...')
@@ -149,15 +145,21 @@ export default {
       this.historySearch = []
       setStorageSync('historySearch', [])
     },
+          onHotSearchClick(keyword) {
+        const index = this.hotSearch.indexOf(keyword)
+        const fileName = this.hotSearchKey[index]
+        this.$router.push({ path: '/pages/detail/main', query: { fileName } })
+      },
     //搜索关键词
     searchKeyWord(text) {
+console.log('@@',text);
       this.$refs.searchBar.setValue(text)
       this.onSearch(text)
     },
     //输入框改变
     onChange(keyword) {
       // console.log(keyword);
-      if (!keyword || keyword.trim().length === 0) {
+      if (keyword || keyword.trim().length === 0) {
         this.searchList = {}
         return
       }
