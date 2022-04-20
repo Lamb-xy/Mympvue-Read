@@ -1,6 +1,6 @@
 // 从后台获取数据的api
 import { get ,post} from '../utils/request'
-const API_URL = 'http://127.0.0.1:4000'
+const API_URL = 'http://xiaoyangmm.top:4001'
 const APP_ID = 'wx1cafdbfcb6602d6a'
 const APP_SECRET = '9580398e4b20643fb7ef6b3fd00bcd9d'
 
