@@ -4,7 +4,7 @@
 
 
 ## 项目演示
-<video src="https://xiaoyangmm.top/mpvue/视频演示.mp4" width="800px" height="600px" controls="controls"></video>
+<video src="https://xiaoyangmm.top/mpvue/视频演示.mp4" width="400px" height="800px" controls="controls"></video>
 
 ## Build Setup
 ``` bash
