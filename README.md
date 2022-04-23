@@ -4,9 +4,7 @@
 
 
 ## 项目演示
-```
-<iframe height=498 width=510 src="https://xiaoyangmm.top/mpvue/视频演示.mp4">
-```
+<video src="https://xiaoyangmm.top/mpvue/视频演示.mp4" width="800px" height="600px" controls="controls"></video>
 
 ## Build Setup
 ``` bash
