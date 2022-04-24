@@ -4,7 +4,8 @@
 
 
 ## 项目演示
-![演示视频](https://xiaoyangmm.top/mpvue/视频演示.gif)
+演示视频地址
+https://xiaoyangmm.top/mpvue/视频演示.gif
 
 ## Build Setup
 ``` bash
